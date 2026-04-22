@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Jeremy Delahaye — SYS_ID:JD-N2 · Technicien Support · Interface holographique">
+<title>SYS://DELAHAYE.JEREMY · DOSSIER OPÉRATEUR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<!-- CRT OVERLAY -->
+<div class="crt-overlay"></div>
+<div class="scanlines"></div>
+<div id="glitch-overlay"></div>
+
+<!-- GRID BG -->
+<canvas id="grid-canvas"></canvas>
+
+<!-- BOOT SCREEN -->
+<div id="boot">
+  <div class="boot-inner">
+    <div class="boot-logo">
+      <div class="boot-logo-ring"></div>
+      <span class="boot-logo-text">JD</span>
+    </div>
+    <div class="boot-title">SYSTÈME D'IDENTIFICATION OPÉRATEUR</div>
+    <div class="boot-subtitle">NEURAL INTERFACE v4.2.1 · CLEARANCE LEVEL: N2</div>
+    <div class="boot-bar-wrap">
+      <div class="boot-bar-track"><div class="boot-bar-fill" id="boot-fill"></div></div>
+      <div class="boot-bar-pct" id="boot-pct">0%</div>
+    </div>
+    <div class="boot-log" id="boot-log"></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-left">
+    <div class="nav-status-dot"></div>
+    <span class="nav-id">SYS://DELAHAYE.JD</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-time" id="nav-time">--:--:--</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#hero"       data-key="F1">PROFIL</a></li>
+    <li><a href="#skills"     data-key="F2">COMPÉTENCES</a></li>
+    <li><a href="#missions"   data-key="F3">MISSIONS</a></li>
+    <li><a href="#inventory"  data-key="F4">ARSENAL</a></li>
+    <li><a href="#specs"      data-key="F5">SPECS</a></li>
+  </ul>
+  <div class="nav-right">
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main id="main-content">
+
+  <!-- ══ HERO ══ -->
+  <section id="hero" class="panel">
+    <div class="panel-header">
+      <span class="panel-tag">PANEL_01</span>
+      <span class="panel-title">DOSSIER OPÉRATEUR</span>
+      <span class="panel-line"></span>
+      <span class="panel-status blink">● ACTIF</span>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="hero-avatar">
+          <div class="avatar-ring outer"></div>
+          <div class="avatar-ring inner"></div>
+          <div class="avatar-core">
+            <span class="avatar-initials">JD</span>
+            <span class="avatar-level">NV.8</span>
+          </div>
+          <svg class="avatar-arc" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="54" fill="none" stroke="var(--c)" stroke-width="1" stroke-dasharray="254 86" stroke-dashoffset="64" opacity="0.3"/>
+            <circle cx="60" cy="60" r="54" fill="none" stroke="var(--c)" stroke-width="2" stroke-dasharray="200 140" stroke-dashoffset="32" class="arc-animated"/>
+          </svg>
+        </div>
+
+        <div class="hero-id-block">
+          <div class="id-row"><span class="id-key">ID</span><span class="id-val">DELAHAYE-JEREMY-001</span></div>
+          <div class="id-row"><span class="id-key">CLASSE</span><span class="id-val">TECHNICIEN SUPPORT N2</span></div>
+          <div class="id-row"><span class="id-key">RANG</span><span class="id-val highlight">EXPERT · NIVEAU 8</span></div>
+          <div class="id-row"><span class="id-key">XP</span><span class="id-val">7 800 / 10 000 pts</span></div>
+          <div class="id-row"><span class="id-key">SECTEUR</span><span class="id-val">COURCELLES-LÈS-LENS · 62970</span></div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-title-block">
+          <div class="hero-eyebrow">// OPÉRATEUR CERTIFIÉ //</div>
+          <h1 class="hero-name">DELAHAYE<br><span>JEREMY</span></h1>
+          <p class="hero-sub">Technicien Support de Proximité · Ancien Développeur Front-End<br>Gestionnaire de parcs informatiques grands comptes</p>
+        </div>
+
+        <div class="xp-bar-block">
+          <div class="xp-labels"><span>XP TOTAL</span><span>78%</span></div>
+          <div class="xp-track"><div class="xp-fill" id="xp-fill"></div></div>
+        </div>
+
+        <div class="stat-cubes">
+          <div class="cube"><span class="cube-n" data-target="850">0</span><span class="cube-l">UTILISATEURS</span></div>
+          <div class="cube"><span class="cube-n" data-target="5">0</span><span class="cube-l">ANS XP</span></div>
+          <div class="cube"><span class="cube-n" data-target="3">0</span><span class="cube-l">GUILDES</span></div>
+          <div class="cube"><span class="cube-n" data-target="16">0</span><span class="cube-l">ARTEFACTS</span></div>
+        </div>
+
+        <div class="hero-contact">
+          <a href="tel:0650325968"                   class="contact-chip">📡 06 50 32 59 68</a>
+          <a href="mailto:jeremy.delahaye.62@gmail.com" class="contact-chip">✉ jeremy.delahaye.62@gmail.com</a>
+          <span class="contact-chip">📍 Courcelles-lès-Lens (62970)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SKILLS ══ -->
+  <section id="skills" class="panel">
+    <div class="panel-header">
+      <span class="panel-tag">PANEL_02</span>
+      <span class="panel-title">MATRICE DE COMPÉTENCES</span>
+      <span class="panel-line"></span>
+      <span class="panel-status">● CHARGÉ</span>
+    </div>
+
+    <div class="skills-grid">
+
+      <div class="skill-group">
+        <div class="skill-group-title">▸ COMBAT SYSTÈME</div>
+        <div class="skill-bar-list">
+          <div class="sbar" data-v="95"><div class="sbar-label"><span>Support N1/N2</span><span class="sbar-val">95</span></div><div class="sbar-track"><div class="sbar-fill" style="--w:95%"></div></div></div>
+          <div class="sbar" data-v="93"><div class="sbar-label"><span>Windows 10/11</span><span class="sbar-val">93</span></div><div class="sbar-track"><div class="sbar-fill" style="--w:93%"></div></div></div>
+          <div class="sbar" data-v="90"><div class="sbar-label"><span>Dépannage H/W</span><span class="sbar-val">90</span></div><div class="sbar-track"><div class="sbar-fill" style="--w:90%"></div></div></div>
+          <div class="sbar" data-v="88"><div class="sbar-label"><span>Active Directory</span><span class="sbar-val">88</span></div><div class="sbar-track"><div class="sbar-fill" style="--w:88%"></div></div></div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">▸ DÉPLOIEMENT & INFRA</div>
+        <div class="skill-bar-list">
+          <div class="sbar" data-v="87"><div class="sbar-label"><span>SCCM / Intune</span><span class="sbar-val">87</span></div><div class="sbar-track"><div class="sbar-fill" style="--w:87%"></div></div></div>
+          <div class="sbar" data-v="85"><div class="sbar-label"><span>Déploiement postes</span><span class="sbar-val">85</span></div><div class="sbar-track"><div class="sbar-fill" style="--w:85%"></div></div></div>
+          <div class="sbar" data-v="80"><div class="sbar-label"><span>Réseau / VPN</span><span class="sbar-val">80</span></div><div class="sbar-track"><div class="sbar-fill" style="--w:80%"></div></div></div>
+          <div class="sbar" data-v="78"><div class="sbar-label"><span>Office 365</span><span class="sbar-val">78</span></div><div class="sbar-track"><div class="sbar-fill" style="--w:78%"></div></div></div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">▸ CODE & INTERFACES</div>
+        <div class="skill-bar-list">
+          <div class="sbar" data-v="75"><div class="sbar-label"><span>JavaScript</span><span class="sbar-val">75</span></div><div class="sbar-track"><div class="sbar-fill" style="--w:75%"></div></div></div>
+          <div class="sbar" data-v="72"><div class="sbar-label"><span>Vue.js / Nuxt.js</span><span class="sbar-val">72</span></div><div class="sbar-track"><div class="sbar-fill" style="--w:72%"></div></div></div>
+          <div class="sbar" data-v="68"><div class="sbar-label"><span>React</span><span class="sbar-val">68</span></div><div class="sbar-track"><div class="sbar-fill" style="--w:68%"></div></div></div>
+          <div class="sbar" data-v="65"><div class="sbar-label"><span>PowerShell</span><span class="sbar-val">65</span></div><div class="sbar-track"><div class="sbar-fill" style="--w:65%"></div></div></div>
+        </div>
+      </div>
+
+            <div class="skill-group">
+        <div class="skill-group-title">▸ Lab système & réseau</div>
+        <div class="skill-bar-list">
+          <div class="sbar" data-v="75"><div class="sbar-label"><span>Promox</span><span class="sbar-val">75</span></div><div class="sbar-track"><div class="sbar-fill" style="--w:75%"></div></div></div>
+          <div class="sbar" data-v="72"><div class="sbar-label"><span>HA</span><span class="sbar-val">72</span></div><div class="sbar-track"><div class="sbar-fill" style="--w:72%"></div></div></div>
+          <div class="sbar" data-v="68"><div class="sbar-label"><span>Windows Server</span><span class="sbar-val">68</span></div><div class="sbar-track"><div class="sbar-fill" style="--w:68%"></div></div></div>
+          <div class="sbar" data-v="65"><div class="sbar-label"><span>Réseaux, vlan, dns, dhcp</span><span class="sbar-val">65</span></div><div class="sbar-track"><div class="sbar-fill" style="--w:65%"></div></div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Hexagonal trait badges -->
+    <div class="trait-row">
+      <div class="trait-hex" data-tip="Opère en autonomie totale">🧠 AUTONOME</div>
+      <div class="trait-hex" data-tip="Zéro approximation">🎯 RIGOUREUX</div>
+      <div class="trait-hex" data-tip="Veille technologique active">🔭 CURIEUX</div>
+      <div class="trait-hex" data-tip="L'utilisateur au centre">🤝 SERVICE</div>
+      <div class="trait-hex" data-tip="Montée en compétence rapide">⚡ ADAPTABLE</div>
+    </div>
+  </section>
+
+  <!-- ══ MISSIONS ══ -->
+  <section id="missions" class="panel">
+    <div class="panel-header">
+      <span class="panel-tag">PANEL_03</span>
+      <span class="panel-title">JOURNAL DE MISSIONS</span>
+      <span class="panel-line"></span>
+      <span class="panel-status">● CLASSIFIÉ</span>
+    </div>
+
+    <div class="mission-timeline">
+   <div class="mission-item" onclick="toggleMission(this)">
+        <div class="mission-connector">
+          <div class="m-dot"></div>
+          <div class="m-line"></div>
+        </div>
+        <div class="mission-card">
+          <div class="mission-top">
+            <div class="mission-code">OPS-003</div>
+            <div class="mission-date">2019 → 2020</div>
+          </div>
+          <div class="mission-title">TECHNICIEN DE MAINTENANCE</div>
+          <div class="mission-org">◈ RIO MANAGED SERVICES / Société Générale</div>
+          <div class="mission-tags">
+            <span class="tag dep">Maintenance Imprimante</span>
+          </div>
+          <div class="mission-detail">
+            <div class="mission-detail-line">► Maintenance du parc Impression</div>
+            <div class="mission-detail-line">► Changement de cartouches  </div>
+            <div class="mission-detail-line">► Mise à jour des fichiers d'inventaires</div>
+          </div>
+          <div class="mission-toggle-hint">[ APPUYER POUR DÉCLASSIFIER ]</div>
+        </div>
+      </div>
+
+      <div class="mission-item" onclick="toggleMission(this)">
+        <div class="mission-connector">
+          <div class="m-dot active"></div>
+          <div class="m-line"></div>
+        </div>
+        <div class="mission-card">
+          <div class="mission-top">
+            <div class="mission-code">OPS-001</div>
+            <div class="mission-date">2022 → 2025</div>
+          </div>
+          <div class="mission-title">TECHNICIEN SUPPORT N2</div>
+          <div class="mission-org">◈ SCC / MALAKOFF HUMANIS</div>
+          <div class="mission-tags">
+            <span class="tag sys">SUPPORT N2</span>
+            <span class="tag net">EASYVISTA</span>
+            <span class="tag net">OFFICE 365</span>
+            <span class="tag dep">INTUNE</span>
+            <span class="tag dep">SCCM</span>
+            <span class="tag sys">850 USERS</span>
+          </div>
+          <div class="mission-detail">
+            <div class="mission-detail-line">► Défense d'un parc de 850 utilisateurs — support de proximité N2</div>
+            <div class="mission-detail-line">► Gestion et résolution de tickets via EasyVista (ITSM)</div>
+            <div class="mission-detail-line">► Dépannage matériel & logiciel — PC, smartphones, périphériques</div>
+            <div class="mission-detail-line">► Récupération et sauvegarde de données critiques</div>
+            <div class="mission-detail-line">► Brassage réseau et interventions terrain</div>
+            <div class="mission-detail-line">► Environnement : VPN, Citrix, Intune, SCCM, Systrack, UniFLOW, AD</div>
+          </div>
+          <div class="mission-toggle-hint">[ APPUYER POUR DÉCLASSIFIER ]</div>
+        </div>
+      </div>
+
+      <div class="mission-item" onclick="toggleMission(this)">
+        <div class="mission-connector">
+          <div class="m-dot"></div>
+          <div class="m-line"></div>
+        </div>
+        <div class="mission-card">
+          <div class="mission-top">
+            <div class="mission-code">OPS-002</div>
+            <div class="mission-date">2020 → 2022</div>
+          </div>
+          <div class="mission-title">DÉVELOPPEUR FRONT-END</div>
+          <div class="mission-org">◈ XEE · CONTRAT PRO</div>
+          <div class="mission-tags">
+            <span class="tag code">JAVASCRIPT</span>
+            <span class="tag code">VUE.JS</span>
+            <span class="tag code">NUXT.JS</span>
+            <span class="tag code">REACT</span>
+          </div>
+          <div class="mission-detail">
+            <div class="mission-detail-line">► Développement d'interfaces front-end en JavaScript</div>
+            <div class="mission-detail-line">► Maîtrise des frameworks Vue.js, Nuxt.js, React</div>
+            <div class="mission-detail-line">► Conception et intégration de composants UI</div>
+            <div class="mission-detail-line">► Contrat de professionnalisation — 2 ans d'immersion tech</div>
+          </div>
+          <div class="mission-toggle-hint">[ APPUYER POUR DÉCLASSIFIER ]</div>
+        </div>
+      </div>
+
+   
+
+      <div class="mission-item" onclick="toggleMission(this)">
+        <div class="mission-connector">
+          <div class="m-dot"></div>
+          <div class="m-line"></div>
+        </div>
+        <div class="mission-card">
+          <div class="mission-top">
+            <div class="mission-code">OPS-004</div>
+            <div class="mission-date">2020</div>
+          </div>
+          <div class="mission-title">TECHNICIEN INFORMATIQUE</div>
+          <div class="mission-org">◈ STAUB · DTI INFORMATIQUE</div>
+          <div class="mission-tags">
+            <span class="tag dep">DÉPLOIEMENT</span>
+            <span class="tag sys">MDM</span>
+            <span class="tag net">SUPPORT</span>
+            <span class="tag sys">TICKETING</span>
+          </div>
+          <div class="mission-detail">
+            <div class="mission-detail-line">► Déploiement Windows via MDM (Mobile Device Management)</div>
+            <div class="mission-detail-line">► Dépannage matériel & logiciel</div>
+            <div class="mission-detail-line">► Gestion & Résolution de tickets</div>
+            <div class="mission-detail-line">► Assistance utilisateurs</div>
+          </div>
+          <div class="mission-toggle-hint">[ APPUYER POUR DÉCLASSIFIER ]</div>
+        </div>
+      </div>
+
+      <div class="mission-item" onclick="toggleMission(this)">
+        <div class="mission-connector">
+          <div class="m-dot"></div>
+        </div>
+        <div class="mission-card">
+          <div class="mission-top">
+            <div class="mission-code">OPS-004</div>
+            <div class="mission-date">2020</div>
+          </div>
+          <div class="mission-title">TECHNICIEN DÉPLOIEMENT</div>
+          <div class="mission-org">◈ CHU LILLE · SPIE</div>
+          <div class="mission-tags">
+            <span class="tag dep">DÉPLOIEMENT</span>
+            <span class="tag sys">GESTION PARC</span>
+            <span class="tag net">INFRAST.</span>
+          </div>
+          <div class="mission-detail">
+            <div class="mission-detail-line">► Déploiement d'écran</div>
+            <div class="mission-detail-line">► Gestion de parc à l'aide de l'outil PS'soft</div>
+          </div>
+          <div class="mission-toggle-hint">[ APPUYER POUR DÉCLASSIFIER ]</div>
+        </div>
+      </div>
+
+      <div class="mission-item" onclick="toggleMission(this)">
+        <div class="mission-connector">
+          <div class="m-dot"></div>
+        </div>
+        <div class="mission-card">
+          <div class="mission-top">
+            <div class="mission-code">OPS-005</div>
+            <div class="mission-date">2019 → 2020</div>
+          </div>
+          <div class="mission-title">TECHNICIEN INFORMATIQUE</div>
+          <div class="mission-org">◈ CAISSE D'ÉPARGNE - CRÉDIT AGRICOLE</div>
+          <div class="mission-tags">
+            <span class="tag dep">DÉPLOIEMENT</span>
+            <span class="tag sys">ACTIVE DIRECTORY</span>
+            <span class="tag sys">POWERSHELL</span>
+            <span class="tag net">TÉLÉPHONIE IP</span>
+          </div>
+          <div class="mission-detail">
+            <div class="mission-detail-line">► Déploiement de postes Windows 10 & masterisation</div>
+            <div class="mission-detail-line">► Installation et configuration d'imprimantes réseau</div>
+            <div class="mission-detail-line">► Mise en service téléphones IP & boîtiers QoE</div>
+            <div class="mission-detail-line">► Assistance utilisateurs & prise en main à distance</div>
+            <div class="mission-detail-line">► Inventaire et gestion matériel — AD, PowerShell, Softophonie</div>
+          </div>
+          <div class="mission-toggle-hint">[ APPUYER POUR DÉCLASSIFIER ]</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ INVENTORY ══ -->
+  <section id="inventory" class="panel">
+    <div class="panel-header">
+      <span class="panel-tag">PANEL_04</span>
+      <span class="panel-title">ARSENAL TECHNOLOGIQUE</span>
+      <span class="panel-line"></span>
+      <span class="panel-status">● EN LIGNE</span>
+    </div>
+
+    <div class="arsenal-filter">
+      <button class="filter-btn active" data-filter="all">TOUT</button>
+      <button class="filter-btn" data-filter="sys">SYSTÈME</button>
+      <button class="filter-btn" data-filter="net">RÉSEAU</button>
+      <button class="filter-btn" data-filter="dep">DÉPLOIEMENT</button>
+      <button class="filter-btn" data-filter="code">CODE</button>
+    </div>
+
+    <div class="arsenal-grid" id="arsenal-grid"></div>
+
+    <div class="arsenal-detail" id="arsenal-detail">
+      <div class="ad-header">
+        <span class="ad-icon" id="ad-icon"></span>
+        <div>
+          <div class="ad-name" id="ad-name"></div>
+          <div class="ad-tier" id="ad-tier"></div>
+        </div>
+      </div>
+      <div class="ad-desc" id="ad-desc"></div>
+    </div>
+  </section>
+
+  <!-- ══ SPECS ══ -->
+  <section id="specs" class="panel">
+    <div class="panel-header">
+      <span class="panel-tag">PANEL_05</span>
+      <span class="panel-title">SPÉCIFICATIONS SYSTÈME</span>
+      <span class="panel-line"></span>
+      <span class="panel-status">● VALIDÉ</span>
+    </div>
+
+    <div class="specs-grid">
+      <div class="specs-col">
+        <div class="specs-block-title">// CERTIFICATIONS //</div>
+        <div class="cert-item">
+          <div class="cert-icon">🏆</div>
+          <div>
+            <div class="cert-name">Technicien d'Assistance Informatique</div>
+            <div class="cert-org">GRETA Grand Hainaut</div>
+          </div>
+          <div class="cert-badge">CERT.</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">⚙</div>
+          <div>
+            <div class="cert-name">Développeur Front-End</div>
+            <div class="cert-org">Formation Professionnelle</div>
+          </div>
+          <div class="cert-badge">VALID.</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">⚡</div>
+          <div>
+            <div class="cert-name">BEP / CAP Électrotechnique</div>
+            <div class="cert-org">Diplôme National</div>
+          </div>
+          <div class="cert-badge">DIPL.</div>
+        </div>
+      </div>
+
+      <div class="specs-col">
+        <div class="specs-block-title">// MODULES PERSONNELS //</div>
+        <div class="module-grid">
+          <div class="module">
+            <div class="module-icon">🏀</div>
+            <div class="module-name">BASKET</div>
+            <div class="module-sub">Travail d'équipe · Stratégie</div>
+          </div>
+         <!-- <div class="module">
+            <div class="module-icon">💻</div>
+            <div class="module-name">TECH</div>
+            <div class="module-sub">Veille · Bidouillage · Domotique (HA)</div>
+          </div>-->
+          <div class="module">
+            <div class="module-icon">🏍</div>
+            <div class="module-name">MOTO</div>
+            <div class="module-sub">Liberté · Précision</div>
+          </div>
+        </div>
+
+        <div class="specs-block-title" style="margin-top:24px">// STATUT OPÉRATIONNEL //</div>
+        <div class="status-readout">
+          <div class="sr-line"><span class="sr-key">DISPONIBILITÉ</span><span class="sr-val blink-soft">● IMMÉDIATE</span></div>
+          <div class="sr-line"><span class="sr-key">MOBILITÉ</span><span class="sr-val">NORD-PAS-DE-CALAIS</span></div>
+          <div class="sr-line"><span class="sr-key">CONTRAT</span><span class="sr-val"> Tous Types de Contrats</span></div>
+          <div class="sr-line"><span class="sr-key">CLEARANCE</span><span class="sr-val highlight">SUPPORT N2 · CERTIFIED</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-left">
+    <span class="footer-id">SYS://DELAHAYE.JEREMY · BUILD 2025.1</span>
+  </div>
+  <div class="footer-center">
+    <span class="footer-status blink-soft">◈ OPÉRATEUR EN LIGNE ◈</span>
+  </div>
+  <div class="footer-right">
+    <span class="footer-copy">DOSSIER CONFIDENTIEL · USAGE RECRUTEMENT</span>
+  </div>
+</footer>
+
+<div id="toast-zone"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
